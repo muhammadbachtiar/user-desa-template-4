@@ -61,7 +61,7 @@ export default function Header() {
                     )
                 }
             </div>
-            <div className="hidden lg:flex items-center justify-between w-full lg:w-3xs md:order-3 z-10">
+            <div className="hidden lg:flex items-center justify-between w-full lg:w-3xs md:order-3">
                 <SearchForm/>
             </div>
         </nav>

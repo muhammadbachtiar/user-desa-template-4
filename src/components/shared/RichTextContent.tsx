@@ -6,7 +6,7 @@ interface RichTextContentProps {
 }
 
 const RichTextContent: React.FC<RichTextContentProps> = ({ content, className = "" }) => {
-  return <div className={`prose prose-lg max-w-none ${className}`} dangerouslySetInnerHTML={{ __html: content }} />
+  return <div className={`prose prose-lg overflow-x-auto max-w-none ${className}`} dangerouslySetInnerHTML={{ __html: content }} />
 }
 
 export default RichTextContent

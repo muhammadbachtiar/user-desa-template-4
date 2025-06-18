@@ -69,12 +69,8 @@ header {
 }
 
 .prose table {
-  display: block;
   max-width: 100%;
-  overflow-x: auto;
   border-collapse: collapse;
-  margin-bottom: 1rem;
-  color: black;
 }
 
 .prose th, .prose td {

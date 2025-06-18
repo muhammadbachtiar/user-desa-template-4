@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import type { MenuWithContent } from "@/types/menu"
@@ -15,16 +15,17 @@ function classNames(...classes: (string | boolean | undefined)[]) {
 
 interface MobileSidebarProps {
   menuData: MenuWithContent
+  isOpen: boolean
+  setIsOpen: (isOpen: boolean) => void
 }
 
-export function MobileSidebar({ menuData }: MobileSidebarProps) {
-  const [isOpen, setIsOpen] = useState(false)
+export function MobileSidebar({ menuData, isOpen, setIsOpen }: MobileSidebarProps) {
   const pathname = usePathname()
 
 
   useEffect(() => {
     setIsOpen(false)
-  }, [pathname])
+  }, [pathname, setIsOpen])
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -36,7 +37,7 @@ export function MobileSidebar({ menuData }: MobileSidebarProps) {
 
     document.addEventListener("mousedown", handleClickOutside)
     return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [isOpen])
+  }, [isOpen, setIsOpen])
 
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
@@ -47,13 +48,13 @@ export function MobileSidebar({ menuData }: MobileSidebarProps) {
 
     document.addEventListener("keydown", handleEscKey)
     return () => document.removeEventListener("keydown", handleEscKey)
-  }, [isOpen])
+  }, [isOpen, setIsOpen])
 
   return (
-    <div className="block lg:hidden">
+    <div className="block z-50">
       <button
         onClick={() => setIsOpen(true)}
-        className="p-2 text-white rounded-md"
+        className="p-2 block lg:hidden text-white rounded-md"
         aria-label="Open menu"
       >
         <GiHamburgerMenu className="h-6 w-6" />
@@ -200,7 +201,7 @@ function NestedSubmenu({ submenu, parentPath, level }: NestedSubmenuProps) {
                 <Link href={parentPath}>
                     <DisclosureButton
                         className={classNames(
-                        "flex justify-between items-center w-full py-1.5 px-3 text-sm font-medium rounded-md transition-all duration-200",
+                        "flex text-start justify-between items-center w-full py-1.5 px-3 text-sm font-medium rounded-md transition-all duration-200",
                         "ml-2", 
                         pathname.startsWith(parentPath)
                             ? "text-[#850000]"
@@ -209,7 +210,7 @@ function NestedSubmenu({ submenu, parentPath, level }: NestedSubmenuProps) {
                     >
                         <span>{submenu.title}</span>
                         <svg
-                        className={classNames("w-2 h-2 transition-transform duration-300", open ? "rotate-180" : "rotate-0")}
+                        className={classNames("min-w-2 min-h-2 w-2 h-2 transition-transform duration-300", open ? "rotate-180" : "rotate-0")}
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -228,7 +229,7 @@ function NestedSubmenu({ submenu, parentPath, level }: NestedSubmenuProps) {
             ) : (
                 <DisclosureButton
                     className={classNames(
-                    "flex justify-between items-center w-full py-1.5 px-3 text-sm font-medium rounded-md transition-all duration-200",
+                    "flex text-start justify-between items-center w-full py-1.5 px-3 text-sm font-medium rounded-md transition-all duration-200",
                     "ml-2", 
                     pathname.startsWith(parentPath)
                         ? "text-[#850000]"
@@ -237,7 +238,7 @@ function NestedSubmenu({ submenu, parentPath, level }: NestedSubmenuProps) {
                 >
                     <span>{submenu.title}</span>
                     <svg
-                    className={classNames("w-2 h-2 transition-transform duration-300", open ? "rotate-180" : "rotate-0")}
+                    className={classNames("min-w-2 min-h-2 w-2 h-2 transition-transform duration-300", open ? "rotate-180" : "rotate-0")}
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

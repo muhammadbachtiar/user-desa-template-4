@@ -15,7 +15,7 @@ const Chatbot = () => {
                 button: {
                     backgroundColor: '#3B81F6',
                     right: 20,
-                    bottom: 80,
+                    bottom: 100,
                     size: 48,
                     dragAndDrop: true,
                     iconColor: 'white',

@@ -10,7 +10,7 @@ const Footer = () => {
     const { data: setting, isLoading: isSettingLoading, isFetching: isSettingFetching, refetch: refetchSetting, isError: isSettingError } = useSetting(`footer-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
     return (
        <>
-        <footer className="bg-black/90 px-6 pb-20 md:pb-6 py-6 w-full">
+        <footer className="bg-black/90 px-6 pb-24 md:pb-6 py-6 w-full">
             <div className="w-full">
                 <div className="grid grid-cols-4 gap-y-5 items-center justify-start mx-0 lg:mx-16">
                     {
