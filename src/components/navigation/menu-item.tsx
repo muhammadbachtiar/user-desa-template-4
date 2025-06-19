@@ -62,7 +62,7 @@ export function MenuItem({ item, basePath = "", level = 0 }: MenuItemProps) {
           {isClickable ? (
             <Link href={fullPath}>
               <MenuButton 
-                className={`flex whitespace-nowrap overflow-hidden max-w-[7rem]
+                className={`flex whitespace-nowrap overflow-hidden max-w-[9rem]
                   "inline-flex items-center text-white uppercase px-4 py-2 text-xs font-semibold transition-all duration-200",
                   "focus:outline-none",
                   ${isActive ? "border-b-[1px] border-white text-white" 
@@ -84,8 +84,8 @@ export function MenuItem({ item, basePath = "", level = 0 }: MenuItemProps) {
             </Link>
           ) : (
             <MenuButton 
-              className={`flex whitespace-nowrap overflow-hidden max-w-[7rem]
-                "inline-flex items-center px-4 py-2 text-xs font-semibold transition-all duration-200",
+              className={`flex whitespace-nowrap overflow-hidden max-w-[8rem]
+                "inline-flex items-center p-2 text-xs font-semibold transition-all duration-200",
                 "focus:outline-none text-white uppercase hover:border-b-[2px] hover:border-gray-300",
                 ${hasChildren ? "pr-1" : ""}`
               }

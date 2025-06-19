@@ -17,8 +17,12 @@ export default function ArticleCard({thumbnail, title, slug, category_name, publ
           <div className="flex justify-between items-start mb-3">
             <span className="text-sm font-medium text-gray-700">{published_at}</span>
           </div>
-          <h2 className="text-2xl font-bold text-black line-clamp-3 mb-4 leading-tight">{title}</h2>
-          <p className="text-gray-700 text-sm line-clamp-4 md:line-clamp-3 leading-relaxed md:mb-3 flex-grow">{description}</p>
+          <div className="line-clamp-3 mb-4 min-h-16">
+            <h2 className="text-2xl font-bold text-black leading-tight">{title}</h2>
+          </div>
+          <div className="line-clamp-4 md:line-clamp-3 mb-4 min-h-16">
+            <p className="text-gray-700 text-sm  leading-relaxed flex-grow">{description}</p>
+          </div>
           <div className="mb-4">
             <span className="inline-block px-3 py-1 text-xs font-medium text-white bg-[#850000]/90 rounded-full">
               {category_name}

@@ -39,7 +39,7 @@ export default function Logo() {
                         }}
                       />
                     <div className='flex flex-col justify-center items-center gap-1'>
-                        <span className={`self-center align-baseline text-lg leading-3 tracking-tighter font-semibold uppercase text-white`}>{ logo?.value?.regionEntity ?? "[Judul logo belum diatur]"} </span>
+                        <span className={`self-center align-baseline text-md leading-3 tracking-tighter font-semibold uppercase text-white`}>{ logo?.value?.regionEntity ?? "[Judul logo belum diatur]"} </span>
                         <span className={`self-center align-baseline text-xs leading-3 font-extralight text-white`}>{ logo?.value?.regionDescription ?? "[Sub judul logo belum diatur]"} </span>
                     </div>
                 </Link>

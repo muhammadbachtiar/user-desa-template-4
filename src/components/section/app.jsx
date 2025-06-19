@@ -34,7 +34,7 @@ export default function App() {
                     )
                 }
             </div>
-            <div style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}  className="max-w-screen overflow-x-auto flex flex-row md:flex-wrap col-span-8 min-h-14 justify-center items-center w-full h-full font-medium px-2 gap-y-4">
+            <div className="max-w-screen overflow-x-auto flex flex-row md:flex-wrap col-span-8 min-h-14 md:justify-center items-center w-full h-full font-medium px-2 gap-y-4">
                     {
                         isLoading || (!data || !(Array.isArray(data?.value) && data?.value.length > 0)) && isFetching ? (
                             <div className="flex justify-center w-full col-span-4 animate-pulse space-x-3">
@@ -54,14 +54,14 @@ export default function App() {
                                 return <div key={index} className={`w-full md:w-fit flex items-center ${index !== data.value.length - 1 ? 'border-r border-gray-300' : ''}`}>
                                             {
                                                 item.link.startsWith("http") ? (
-                                                    <a href={item.link} target='blank' key={index} rel="noopener noreferrer" className="group w-full md:min-w-60 md:w-fit inline-flex flex-col items-center justify-center focus:ring-0 focus:bg-none md:p-0 md:col-span-2 md:rounded-lg md:justify-items-center md:bg-white dark:hover:bg-gray-800 md:focus:ring-2 md:focus:ring-gray-200 md:focus:bg-gray-100">
+                                                    <a href={item.link} target='blank' key={index} rel="noopener noreferrer" className="group min-w-20 w-full md:min-w-60 md:w-fit inline-flex flex-col items-center justify-center focus:ring-0 focus:bg-none md:p-0 md:col-span-2 md:rounded-lg md:justify-items-center md:bg-white dark:hover:bg-gray-800 md:focus:ring-2 md:focus:ring-gray-200 md:focus:bg-gray-100">
                                                             <div className="relative overflow-hidden rounded-sm w-full flex justify-center group">
                                                                 <IconComponent className='w-6 h-6 mb-1 object-cover transform group-hover:scale-110 group-focus:scale-125 md:group-focus:scale-110 transition duration-300 ease-in-out text-white md:w-20 md:h-20 md:mb-2 md:selft-center md:text-[#2B2024] group-hover:text-[#850000] group-focus:text-[#850000] dark:text-gray-400 dark:group-hover:text-blue-500'/> 
                                                             </div>
                                                             <span className="text-sm md:max-w-32 line-clamp-2 font-normal underline underline-offset-2 text-white md:text-md text-center md:font-bold md:tracking-tight md:text-[#2B2024] group-focus:text-black dark:text-gray-400 dark:group-hover:text-blue-500">{item.title}</span>
                                                         </a>
                                                     ) : (
-                                                        <Link href={item.link} key={index} className="group w-full md:min-w-60 md:w-fit inline-flex flex-col items-center justify-center focus:ring-0 focus:bg-none md:p-0 md:col-span-2 md:rounded-lg md:justify-items-center md:bg-white dark:hover:bg-[#2B2024] md:focus:ring-2 md:focus:ring-gray-200 md:focus:bg-gray-100">
+                                                        <Link href={item.link} key={index} className="group min-w-20 w-full md:min-w-60 md:w-fit inline-flex flex-col items-center justify-center focus:ring-0 focus:bg-none md:p-0 md:col-span-2 md:rounded-lg md:justify-items-center md:bg-white dark:hover:bg-[#2B2024] md:focus:ring-2 md:focus:ring-gray-200 md:focus:bg-gray-100">
                                                             <div className="relative overflow-hidden rounded-sm w-full flex justify-center group">
                                                                 <IconComponent className='w-6 h-6 mb-1 object-cover transform group-hover:scale-110 group-focus:scale-125 md:group-focus:scale-110 transition duration-300 ease-in-out text-white md:w-20 md:h-20 md:mb-2 md:selft-center md:text-[#2B2024] group-hover:text-[#850000] group-focus:text-[#850000] dark:text-gray-400 dark:group-hover:text-blue-500'/> 
                                                             </div>

@@ -205,7 +205,7 @@ SampleNextArrow.propTypes = {
 };
   
 return (
-        <div className="w-full">
+        <div className="min-h-full w-full">
             <Slider {...settings}>
               {
                 isLoading || isFetching && (!data || data.length === 0) ? (

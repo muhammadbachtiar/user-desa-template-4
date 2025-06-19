@@ -32,7 +32,7 @@ export function MainNav({ menuData }: MainNavProps) {
 
     useEffect(() => {
     const updateMenuLength = () => {
-      if (window.innerWidth >= 1280) {
+      if (window.innerWidth >= 1380) {
         setVisibleItems(5);
       } else if (window.innerWidth >= 768) {
         setVisibleItems(3); 

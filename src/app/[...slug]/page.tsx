@@ -42,7 +42,8 @@ export default function DynamicPage({ params }: DynamicPageProps & PageProps) {
   const { data: staticPage, isLoading, isError, isFetching, refetch } = useStaticPage({}, menuItem?.staticPage || "");
   
    if (!isLoading && !isFetching && !staticPage) {
-    return <div className="flex flex-col text-center items-center justify-center h-screen w-full text-gray-700">
+    return <div className="flex flex-col text-center md:px-12 items-center justify-center h-screen w-full text-gray-700">
+         <div className="absolute inset-0 h-[15%] bg-gradient-to-b from-black/25 to-white/5"></div>
               <h1 className="text-4xl font-bold">404 - Page Not Found</h1>
               <p className="mt-2 text-lg">Halaman yang kamu cari tidak ditemukan.</p>
               <Link href="/" className="mt-4 px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700">
