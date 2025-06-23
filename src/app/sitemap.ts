@@ -21,12 +21,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             }
 
     if (articles.length > 0) {
-        articleEntries = articles.map((article: ArticleData) => ({
+        articleEntries = articles.map((article: ArticleData) =>{
+            const updatedAt = new Date(article.updated_at);
+
+            return  {
             url: `${domainUrl}/articles/${article.slug}`,
-            lastModified: new Date(article.updated_at),
+            lastModified: isNaN(updatedAt.getTime()) ? new Date() : updatedAt,
             changeFrequency: "weekly" as const,
             priority: 0.8,
-        }));
+        }
+        });
     }
 
         const staticPages = [
