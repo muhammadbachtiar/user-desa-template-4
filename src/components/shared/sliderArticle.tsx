@@ -22,9 +22,10 @@ interface SliderButtonProps {
 const SliderCard = ({useButton = false, useDots= false}: SliderCardProps) => {
   let isInfinite = false
   const { data: articles, isLoading, isFetching, refetch, isError } = useArticle({"page_size": 6});
+  const dataArticles = articles?.pages?.[0]?.data ?? [];
   
   if(!isLoading && !isFetching && !isError){
-    isInfinite = (articles?.pages?.[0]?.data?.length ?? 0) > 1
+    isInfinite = (dataArticles?.length ?? 0) > 1
   }
 
 function SampleNextArrow(props: SliderButtonProps) {
@@ -118,13 +119,13 @@ return (
         <div>
             <Slider {...settings}>
                {
-                isLoading || (isFetching &&  (!articles || !articles.pages[0] || articles.pages[0]?.data.length === 0))  ? (
+                isLoading || (isFetching &&  (!dataArticles || (!Array.isArray(dataArticles) || dataArticles.length === 0)))  ? (
                   Array.from({ length: 4 }).map((_, index) => (
                     <div key={index} className="flex px-3 animate-pulse w-full">
                       <div className="h-64 w-full flex-1 rounded-2xl bg-gray-200"></div>
                     </div>
                 ))
-                ) : !isError && !isFetching &&  (!articles || !articles.pages[0] || articles.pages[0]?.data.length === 0) ? (
+                ) : !isError && !isFetching &&  (!dataArticles || (!Array.isArray(dataArticles) || dataArticles.length === 0)) ? (
                   <div className="flex justify-center items-center w-full">
                     <div className="flex h-52 justify-center items-center w-full">
                       <p className="text-black text-center text-md dark:text-gray-400">Artikel tidak tersedia</p>

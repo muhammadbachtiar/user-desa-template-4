@@ -43,7 +43,7 @@ export default function App() {
                                 ))}
                             </div>
                         ) : !isError && !isFetching && (!data || !(Array.isArray(data?.value) && data?.value.length > 0)) ? (
-                            <><p className="text-black text-center text-md dark:text-gray-400">Layanan tidak tersedia</p></>
+                                <div className='w-full'><p className="text-black text-center text-md dark:text-gray-400">Layanan tidak tersedia</p></div>
                         ) : isError && !isFetching  ? (
                             <Refetch refetch={refetch} />
                         ) : 
