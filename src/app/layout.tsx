@@ -46,7 +46,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ClientWrapper>
-          <div className="min-h-screen min-w-full bg-primary flex flex-col justify-between items-start w-full overflow-x-hidden">
+          <div className="min-h-screen min-w-full bg-primary flex flex-col justify-between items-start w-full">
                 <div className="absolute top-0 left-0 w-full z-50 ">
                   <Header />
                 </div>
