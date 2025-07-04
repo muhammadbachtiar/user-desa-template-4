@@ -11,7 +11,7 @@ export default function Logo() {
     <>
       {   
           isLoading ? (
-            <div className="flex  animate-pulse space-x-3">
+            <div className="flex animate-pulse space-x-3">
               <div className="size-12 rounded-2xl bg-gray-200"></div>
                 <div className="flex-1 space-y-6 py-1">
                   <div className="space-y-3">
@@ -26,7 +26,7 @@ export default function Logo() {
             <Refetch refetch={refetch} />
           ) : (
               <>       
-                <Link href={"/"} className={`flex items-center py-1 space-x-3 rtl:space-x-reverse rounded-md hover:backdrop-blur-sm hover:scale-105 transition transform duration-300 ease-in-out`}>
+                <Link href={"/"} className={`flex flex-row py-1 space-x-3 rtl:space-x-reverse rounded-md lg:hover:scale-95 transition transform duration-300 ease-in-out`}>
                     <Image
                         className="h-1 mx-1"
                         src={logo?.value?.imageUrl ?? '/images/unavailable-image.png'}
@@ -39,8 +39,8 @@ export default function Logo() {
                         }}
                       />
                     <div className='flex flex-col justify-center items-center gap-1'>
-                        <span className={`self-center align-baseline text-md leading-3 tracking-tighter font-semibold uppercase text-white`}>{ logo?.value?.regionEntity ?? "[Judul logo belum diatur]"} </span>
-                        <span className={`self-center align-baseline text-xs leading-3 font-extralight text-white`}>{ logo?.value?.regionDescription ?? "[Sub judul logo belum diatur]"} </span>
+                        <span className={`self-center text-center align-baseline text-md leading-4 tracking-tighter font-semibold uppercase text-white`}>{ logo?.value?.regionEntity ?? "[Judul logo belum diatur]"} </span>
+                        <span className={`self-center text-center align-baseline text-xs leading-3 font-extralight text-white`}>{ logo?.value?.regionDescription ?? "[Sub judul logo belum diatur]"} </span>
                     </div>
                 </Link>
               </>

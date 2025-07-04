@@ -36,7 +36,7 @@ export default function Home({ params }: DynamicPageProps & PageProps) {
             <div className="absolute inset-0 h-[15%] bg-gradient-to-b from-black/25 to-white/5"></div>
             <div className="col-span-6 grid grid-cols-6 gap-x-4 gap-y-8">
                 <div className="relative w-full col-span-6">
-                    <input id="search-dropdown"value={searchValue} onChange={handleChange} className="block py-3 px-5 w-full rounded-sm text-sm text-gray-900 bg-gray-100 placeholder:text-black border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Cari judul ..." />
+                    <input id="search-dropdown" type="search" value={searchValue} onChange={handleChange} className="block py-3 px-5 pe-12 w-full rounded-sm text-sm text-gray-900 bg-gray-100 placeholder:text-black border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Cari judul ..." />
                     <span className="absolute top-0 end-0 py-3 px-5 sm:ms-4 text-sm font-medium h-full text-white focus:outline-none focus:ring-blue-300 dark:bg-[#850000] dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>

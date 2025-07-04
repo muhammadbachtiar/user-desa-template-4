@@ -208,13 +208,13 @@ return (
         <div className="min-h-full w-full">
             <Slider {...settings}>
               {
-                isLoading || isFetching && (!data || Array.isArray(data) && data.length > 0) ? (
+                isLoading || isFetching && (!data || Array.isArray(data) && data.length === 0) ? (
                   Array.from({ length: 4 }).map((_, index) => (
                     <div key={index} className="relative px-3 animate-pulse">
                       <div className="min-h-96 w-80 flex-1 rounded-2xl bg-gray-200"></div>
                     </div>
                 ))
-                ) : !isError && !isFetching && (!data || Array.isArray(data) && data.length > 0) ? (
+                ) : !isError && !isFetching && (!data || Array.isArray(data) && data.length === 0) ? (
                     <div className="mb-4 col-span-8 w-full">
                       <p className="text-black text-md min-h-52 flex items-center justify-center dark:text-gray-400">Infografis tidak tersedia</p>
                     </div>
@@ -242,7 +242,7 @@ return (
                                   />
                               </div>
                             </div>
-                             <div className="p-3 md:p-6 min-h-full text-black bg-gray-50 rounded-b-2xl">
+                             <div className="p-3 md:p-6 min-h-32 lg:min-h-40 text-black bg-gray-50 rounded-b-2xl">
                                 <h5 className="text-lg md:text-xl font-bold mb-2 leading-tight line-clamp-2">
                                   {card.title}
                                 </h5>

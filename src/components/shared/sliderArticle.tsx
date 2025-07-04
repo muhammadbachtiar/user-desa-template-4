@@ -63,8 +63,6 @@ const settings = {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-          infinite: true,
-          dots: true
         }
       },
       {
@@ -125,7 +123,7 @@ return (
                       <div className="h-64 w-full flex-1 rounded-2xl bg-gray-200"></div>
                     </div>
                 ))
-                ) : !isError && !isFetching &&  (!dataArticles || (!Array.isArray(dataArticles) || dataArticles.length === 0)) ? (
+                ) : !isError && !isFetching && (!dataArticles || (!Array.isArray(dataArticles) || dataArticles.length === 0)) ? (
                   <div className="flex justify-center items-center w-full">
                     <div className="flex h-52 justify-center items-center w-full">
                       <p className="text-black text-center text-md dark:text-gray-400">Artikel tidak tersedia</p>

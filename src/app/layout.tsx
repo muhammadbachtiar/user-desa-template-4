@@ -4,6 +4,7 @@ import Footer from "@/components/app-layout/footer";
 import "./globals.css";
 import Chatbot from "@/components/chatbot/chatbot";
 import ClientWrapper from "@/components/shared/clientWrapper";
+import SettingService from "@/services/controlers/setting/setting.service";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,6 +15,24 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export async function generateMetadata() {
+  try {
+    const logoResponse = await SettingService.getSetting (`logo-${process.env.NEXT_PUBLIC_VILLAGE_ID}`)
+    return {
+      title: process.env.NEXT_PUBLIC_VILLAGE_NAME || "Desa Muara Enim",
+      icons: {
+        icon: [
+          new URL(logoResponse?.data?.value?.imageUrl)
+        ]
+      },
+    }
+  } catch {
+     return {
+      title: process.env.NEXT_PUBLIC_VILLAGE_NAME || "Desa Muara Enim",
+    }
+  }
+}
 
 export default function RootLayout({
   children,
