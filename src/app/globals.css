@@ -40,13 +40,6 @@ header {
   color: black;
 }
 
-.prose h1 { font-size: 2.5rem; }
-.prose h2 { font-size: 2rem; }
-.prose h3 { font-size: 1.75rem; }
-.prose h4 { font-size: 1.5rem; }
-.prose h5 { font-size: 1.25rem; }
-.prose h6 { font-size: 1rem; }
-
 .prose p {
   margin-bottom: 1rem;
   color: black;
@@ -57,12 +50,30 @@ header {
   text-decoration: none;
 }
 
+.prose a:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.prose a:visited {
+  color: #6610f2;
+}
+
 .prose ul, .prose ol {
-  margin-left: 1rem;
+  margin-left: 1.3rem;
   margin-bottom: 1rem;
   list-style: initial;
   color: black;
 }
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
 
 .prose li {
   margin-bottom: 0.5rem;
@@ -83,19 +94,8 @@ header {
   display: inline;
 }
 
-@media (max-width: 768px) {
-  .prose h1 { font-size: 2rem; }
-  .prose h2 { font-size: 1.75rem; }
-  .prose h3 { font-size: 1.5rem; }
-  .prose h4 { font-size: 1.25rem; }
-  .prose h5 { font-size: 1rem; }
-  .prose h6 { font-size: 0.875rem; }
+.flatpickr-wrapper {
+  @apply w-full;
+  display: block;
 }
-@media (max-width: 480px) {
-  .prose h1 { font-size: 1.75rem; }
-  .prose h2 { font-size: 1.5rem; }
-  .prose h3 { font-size: 1.25rem; }
-  .prose h4 { font-size: 1rem; }
-  .prose h5 { font-size: 0.875rem; }
-  .prose h6 { font-size: 0.75rem; }
-}
+

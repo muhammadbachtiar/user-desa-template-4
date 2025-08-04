@@ -21,18 +21,19 @@ const TourDetail = () => {
     }
   return (
     <>  
-        <div className="min-h-screen w-full mt-16">
-            <div className="absolute inset-0 h-[15%] bg-gradient-to-b from-black/25 to-white/5"></div>
-            {isLoadingTour || isFetchingTour && (!tour || Object.keys(tour || {}).length === 0) ? (
+        <div className="min-h-screen flex justify-center w-full mt-24 sm:mt-16 py-4">
+          <div className="absolute inset-0 h-[11%] bg-gradient-to-b from-black/25 to-white/5"></div>
+          <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
+             {isLoadingTour || isFetchingTour && (!tour || Object.keys(tour || {}).length === 0) ? (
                 <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 h-full animate-pulse">
 
                 <div className="lg:col-span-6 lg:sticky lg:top-0 lg:h-screen">
-                  <div className="h-full w-full flex items-start justify-center p-3 lg:p-6">
+                  <div className="h-full w-full flex items-start justify-center">
                     <div className="relative w-full h-full min-h-[300px] lg:min-h-[500px] rounded-xl bg-gray-300"></div>
                   </div>
                 </div>
               
-                <div className="lg:col-span-6 p-4 lg:p-6 lg:overflow-y-auto">
+                <div className="lg:col-span-6 lg:overflow-y-auto">
                   <div className="flex flex-col gap-y-6">
 
                     <div className="h-6 w-3/4 bg-gray-300 rounded"></div>
@@ -72,9 +73,9 @@ const TourDetail = () => {
                 </div>
             ) : (
                 <>
-                    <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 h-full">
+                    <div className="flex-1 grid grid-cols-1 gap-4 lg:grid-cols-12 h-full">
                         <div className="lg:col-span-6 lg:sticky top-0 lg:h-screen ">
-                            <div className="h-full w-full flex items-start justify-center p-3 lg:p-6">
+                            <div className="h-full w-full flex items-start justify-center">
                                 <div className="relative w-full h-full min-h-[300px] lg:min-h-[500px] rounded-xl overflow-hidden">
                                     {
                                         !tour?.latitude && !tour?.longitude && !gmapsApiKey ? (
@@ -98,7 +99,7 @@ const TourDetail = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="lg:col-span-6 p-4 lg:p-6 lg:overflow-y-auto">
+                        <div className="lg:col-span-6 lg:overflow-y-auto">
                             <div className="flex flex-col gap-y-6">
                                 <div>
                                     <h1 className="text-3xl md:text-4xl font-bold tracking-tighter text-gray-900 dark:text-white mb-2">
@@ -119,39 +120,51 @@ const TourDetail = () => {
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <div className="flex items-center gap-x-2">
-                                    <CiMap className="w-5 h-5 text-[#B90B0B]" />
-                                    <a
-                                        href={tour?.link?.gmap || ''}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-md text-gray-900 dark:text-white hover:font-bold transition-all"
-                                    >
-                                        Lokasi
-                                    </a>
-                                    </div>
-                                    <div className="flex items-center gap-x-2">
-                                    <BiGlobe className="w-5 h-5 text-[#B90B0B]" />
-                                    <a
-                                        href={`https://${tour?.link.website}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-md text-gray-900 dark:text-white hover:font-bold transition-all"
-                                    >
-                                        {tour?.link?.website || '[Website tidak tersedia]'}
-                                    </a>
-                                    </div>
-                                    <div className="flex items-center gap-x-2">
-                                    <CgMail className="w-5 h-5 text-[#B90B0B]" />
-                                    <a
-                                        href={`mailto:${tour?.link?.email || ''}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-md text-gray-900 dark:text-white hover:font-bold transition-all"
-                                    >
-                                        {tour?.link?.email ?? '[Email tidak tersedia]'}
-                                    </a>
-                                    </div>
+                                    {
+                                        tour?.link?.gmap && (
+                                            <div className="flex items-center gap-x-2">
+                                                <CiMap className="w-5 h-5 text-[#B90B0B]" />
+                                                <a
+                                                    href={tour?.link?.gmap || ''}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-md text-gray-900 dark:text-white hover:font-bold transition-all"
+                                                >
+                                                    Lokasi
+                                                </a>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        tour?.link?.website && (
+                                            <div className="flex items-center gap-x-2">
+                                                <BiGlobe className="w-5 h-5 text-[#B90B0B]" />
+                                                <a
+                                                    href={`https://${tour?.link.website}`}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-md text-gray-900 dark:text-white hover:font-bold transition-all"
+                                                >
+                                                    {tour?.link?.website || '[Website tidak tersedia]'}
+                                                </a>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        tour?.link?.email && (
+                                            <div className="flex items-center gap-x-2">
+                                                <CgMail className="w-5 h-5 text-[#B90B0B]" />
+                                                <a
+                                                    href={`mailto:${tour?.link?.email || ''}`}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-md text-gray-900 dark:text-white hover:font-bold transition-all"
+                                                >
+                                                    {tour?.link?.email ?? '[Email tidak tersedia]'}
+                                                </a>
+                                            </div>
+                                        )
+                                    }
                                 </div>
                                 <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">{tour?.description}</p>
                                 <div className="flex flex-wrap gap-4">
@@ -177,6 +190,7 @@ const TourDetail = () => {
                 </>
             )
             }
+          </div>
         </div>
     </>
   );

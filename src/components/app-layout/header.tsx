@@ -11,8 +11,8 @@ export default function Header() {
   const { data: menu, isLoading, refetch, isFetching, isError } = useSetting(`menu-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
 
   return (
-     <header className="bg-transparent border-t-8 sm:border-t-4 border-t-[#850000]"> 
-        <nav className="px-[5%] flex flex-wrap items-center justify-between py-2 gap-y-2 backdrop-blur-sm lg:backdrop-blur-none">
+     <header className="bg-transparent backdrop-blur-sm lg:backdrop-blur-none border-t-8 sm:border-t-4 border-t-[#850000] flex justify-center"> 
+        <nav className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl flex flex-row items-center justify-between py-2 gap-y-2">
             <div className="flex items-center">
                 <Logo/>
             </div>

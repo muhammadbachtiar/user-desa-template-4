@@ -88,7 +88,7 @@ export function MobileSidebar({ menuData, isOpen, setIsOpen }: MobileSidebarProp
         </div>
 
         <div className="overflow-y-auto h-[calc(100vh-64px)]">
-          <div className="flex items-center  p-4  justify-between w-full lg:w-3xs md:order-3">
+          <div className="flex items-center p-4 justify-between w-full md:order-3">
               <SearchForm/>
           </div>
           <ul className="list-none flex flex-col p-4 font-medium">

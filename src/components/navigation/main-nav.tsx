@@ -15,20 +15,11 @@ interface MainNavProps {
 }
 
 export function MainNav({ menuData }: MainNavProps) {
-  const [isScrolled, setIsScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false);
   const [visibleItems, setVisibleItems] = useState(5);
 
   const sortedMenuItems = [...menuData].sort((a, b) => a.order - b.order)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
     useEffect(() => {
     const updateMenuLength = () => {
@@ -50,7 +41,7 @@ export function MainNav({ menuData }: MainNavProps) {
   }, []);
 
   return (
-    <nav className={classNames("relative z-10 transition-all duration-300", isScrolled && "shadow-sm")}>
+    <nav className={classNames("relative z-10 transition-all duration-300")}>
 
       <MobileSidebar menuData={sortedMenuItems} setIsOpen={setIsOpen} isOpen={isOpen} />
 

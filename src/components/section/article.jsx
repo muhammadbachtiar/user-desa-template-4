@@ -12,12 +12,12 @@ export default function Article() {
     : { backgroundImage: `url(/images/unavailable-image.png)`};
 
   return (
-    <section className="relative max-w-11/12 w-full flex justify-center items-center">
-        <div className="max-w-full w-full grid grid-cols-8 gap-2 bg-white dark:bg-gray-700 dark:border-gray-600 ">
+    <section className="relative w-full flex justify-center items-center">
+        <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl grid grid-cols-8 gap-2 bg-white dark:bg-gray-700 dark:border-gray-600 ">
             {
               isSettingLoading ? (
                   <div className="flex animate-pulse mb-4 col-span-8 w-full">
-                    <div className="h-52 w-full flex-1 rounded-2xl bg-gray-200"></div>
+                    <div className="h-52 w-full flex-1 rounded-2xl"></div>
                   </div>
               ) : isSettingError && !isSettingFetching  ? (
                   <div className="flex min-h-52 justify-center items-center mb-4 col-span-8 w-full">
@@ -25,7 +25,7 @@ export default function Article() {
                   </div>
               ) : (
                 <>
-                    <div className="flex flex-wrap justify-between px-6 col-span-8">
+                    <div className="flex flex-wrap justify-between col-span-8">
                       <h2 className="text-3xl md:text-4xl text-black font-bold text-left">
                         {setting?.value?.title || "[Judul artikel belum diatur]"}
                       </h2>

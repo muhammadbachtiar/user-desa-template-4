@@ -50,7 +50,7 @@ function SamplePrevArrow(props: SliderButtonProps) {
       );
 }  
     
-let settings, height : string;
+let settings;
   
 settings = {
   dots: false,
@@ -78,7 +78,6 @@ settings = {
     }
   )
 };
-height = "50vh"
 
 if(slideToShow > 1){
   settings = {
@@ -133,7 +132,6 @@ if(slideToShow > 1){
       }
     )
   }
-  height = "58vh"
 }
 
 if(slideToShow > 3){
@@ -189,7 +187,6 @@ if(slideToShow > 3){
       }
     )
   }
-  height = "46vh"
 }
 
 SamplePrevArrow.propTypes = {
@@ -211,7 +208,7 @@ return (
                 isLoading || isFetching && (!data || Array.isArray(data) && data.length === 0) ? (
                   Array.from({ length: 4 }).map((_, index) => (
                     <div key={index} className="relative px-3 animate-pulse">
-                      <div className="min-h-96 w-80 flex-1 rounded-2xl bg-gray-200"></div>
+                      <div className=" w-80 flex-1 rounded-2xl bg-gray-200"></div>
                     </div>
                 ))
                 ) : !isError && !isFetching && (!data || Array.isArray(data) && data.length === 0) ? (
@@ -225,24 +222,20 @@ return (
                 ) : (
                   data.map((card: Infografis, index:number) => {
                       return (
-                         <div className=" min-h-full" key={card.slug} tabIndex={1} onClick={() => {setIsOpen(true); setCurrentIndex(index)}}>
+                         <div className=" min-h-full" key={card.slug} onClick={() => {setIsOpen(true); setCurrentIndex(index)}}>
                           <div className="relative min-h-full p-1 group border-2 border-white hover:border-[#850000] rounded-2xl transition duration-300 ease-in-out ">
                             <div className="relative flex justify-center overflow-hidden w-full rounded-t-2xl shadow-lg">
-                              <div className="relative flex justify-center overflow-hidden w-full group rounded-t-2xl">
+                              <div className="relative flex justify-center overflow-hidden w-full group rounded-t-2xl aspect-[4/5]">
                                 <Image
-                                    className="h-full w-full min-w-full object-cover"
+                                    className="w-full object-cover"
                                     src={card.link?.startsWith("https:/") ?  card.link : '/images/not-fuound-image.jpg'}
-                                    alt="Tour Banner"
+                                    alt={`Infografis ${card.title}`}
                                     width={500}
-                                    height={300}
-                                    style={{
-                                      width: "auto",
-                                      height: height,
-                                    }}
+                                    height={889}
                                   />
                               </div>
                             </div>
-                             <div className="p-3 md:p-6 min-h-32 lg:min-h-40 text-black bg-gray-50 rounded-b-2xl">
+                             <div className="p-3 md:p-6 text-black bg-gray-50 rounded-b-2xl">
                                 <h5 className="text-lg md:text-xl font-bold mb-2 leading-tight line-clamp-2">
                                   {card.title}
                                 </h5>

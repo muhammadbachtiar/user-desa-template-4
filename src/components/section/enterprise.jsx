@@ -13,7 +13,7 @@ export default function Enterprise() {
             {
                 isSettingLoading ? (
                     <div className="flex animate-pulse mb-4 col-span-8 w-full">
-                    <div className="h-52 w-full flex-1 rounded-2xl bg-gray-200"></div>
+                    <div className="h-52 w-full flex-1 rounded-2xl"></div>
                     </div>
                 ) : isSettingError && !isSettingFetching && !setting || !setting.value ? (
                     <div className="flex min-h-52 mb-4 justify-center col-span-8 w-full">

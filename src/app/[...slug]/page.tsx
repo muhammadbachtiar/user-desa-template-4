@@ -1,13 +1,11 @@
-'use client'
+
 import type { MenuWithContent } from "@/types/menu";
 import RichTextContent from "@/components/shared/RichTextContent";
 import AsideContent from "@/components/app-layout/aside-content";
-import { PageProps } from "../../../.next/types/app/[...slug]/page";
-import Refetch from "@/components/shared/refetch";
-import useStaticPage from "@/hooks/settings/useStaticPage";
-import { use } from "react";
-import useSetting from "@/hooks/settings/useSettings";
 import Link from "next/link";
+import SettingService from "@/services/controlers/setting/setting.service";
+import { formatMetadata } from "@/services/utils/generate-seo";
+import { Metadata } from "next";
 
 function findMenuItemByPath(
   items: MenuWithContent,
@@ -29,66 +27,69 @@ function findMenuItemByPath(
 
   return null;
 }
+interface PageProps {
+    params: Promise<{ slug?: string }>;
+}
+
+interface DynamicPageProps {
+  params: { slug?: string[] };
+}
+export const dynamic = 'force-dynamic';
+export async function generateMetadata({ params }: PageProps ): Promise<Metadata> {
+  const unwrappedParams = await params;
+  const { data: menu } = await SettingService.getSetting(`menu-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
+  const logoResponse = await SettingService.getSetting (`logo-${process.env.NEXT_PUBLIC_VILLAGE_ID}`)
+  const path = Array.isArray(unwrappedParams.slug) ? unwrappedParams.slug : [];
+  const menuItem = Array.isArray(menu?.value) ? findMenuItemByPath(menu.value, path) : null;
+  try {
+    const menuData = await SettingService.getStaticPage(menuItem?.staticPage || "");
+    return formatMetadata({ ...menuData.data, type: "article" }, { siteName: logoResponse?.data?.value?.regionEntity || "Pemerintah Kabupaten Muara Enim" });
+  } catch {
+    return {
+      title: `Menu | Pemerintah Kabupaten Muara Enim`,
+    };
+  }
+}
 
 interface DynamicPageProps {
   params: { slug?: string[] };
 }
 
-export default function DynamicPage({ params }: DynamicPageProps & PageProps) {
-  const unwrappedParams = use(params);
-  const { data: menu } = useSetting(`menu-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
-  const path = unwrappedParams.slug || [];
-  const menuItem = Array.isArray(menu?.value) ? findMenuItemByPath(menu.value, path) : null;
-  const { data: staticPage, isLoading, isError, isFetching, refetch } = useStaticPage({}, menuItem?.staticPage || "");
-  
-   if (!isLoading && !isFetching && !staticPage) {
-    return <div className="flex flex-col text-center md:px-12 items-center justify-center h-screen w-full text-gray-700">
-         <div className="absolute inset-0 h-[15%] bg-gradient-to-b from-black/25 to-white/5"></div>
-              <h1 className="text-4xl font-bold">404 - Page Not Found</h1>
-              <p className="mt-2 text-lg">Halaman yang kamu cari tidak ditemukan.</p>
-              <Link href="/" className="mt-4 px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700">
-                Kembali ke Beranda
-              </Link>
-            </div>;
-  }
+export default async function DynamicPage({ params }: DynamicPageProps & PageProps) {
+  const unwrappedParams = await params;
+    const path = Array.isArray(unwrappedParams.slug) ? unwrappedParams.slug : [];
+      try {
+    const { data: menu } = await SettingService.getSetting(
+      `menu-${process.env.NEXT_PUBLIC_VILLAGE_ID}`,
+      {}
+    );
 
-  return (
-    <div className="min-h-screen px-3 md:px-12 w-full mt-16 py-4">
-      <div className="absolute inset-0 h-[15%] bg-gradient-to-b from-black/25 to-white/5"></div>
-        <AsideContent>
-          {isLoading || (!staticPage?.content && isFetching) ? (
-                <>
-                  <div className="animate-pulse space-y-4 p-6">
-                    <div className="h-8 w-3/4 bg-gray-200 rounded"></div>
-                    <div className="flex space-x-4">
-                      <div className="h-4 w-1/4 bg-gray-200 rounded"></div>
-                      <div className="h-4 w-1/6 bg-gray-200 rounded"></div>
-                    </div>
-                    <div className="h-56 w-full bg-gray-200 rounded"></div>
-                    <div className="space-y-2">
-                      <div className="h-4 w-full bg-gray-200 rounded"></div>
-                      <div className="h-4 w-5/6 bg-gray-200 rounded"></div>
-                      <div className="h-4 w-4/5 bg-gray-200 rounded"></div>
-                      <div className="h-4 w-3/4 bg-gray-200 rounded"></div>
-                    </div>
-                  </div>
-                </>
-          ) : !isError && !isFetching && !staticPage?.content ? (
-              <div className="flex col-span-6 w-full h-full justify-center">
-                  <div className="flex min-h-screen flex-col items-center justify-center gap-2">
-                      <p className="text-black text-2xl dark:text-gray-400 text-center">Data tidak tersedia</p>
-                  </div>
-              </div>
-          ) : isError && !isFetching  ? (
-            <div className="flex col-span-6 w-full h-full justify-center">
-                <div className="flex min-h-screen flex-col items-center justify-center gap-2">
-                  <Refetch refetch={refetch} />
-                </div>
-            </div>
-          ) : (
-            <RichTextContent content={staticPage.content} className="px-4" />
-          )}
-        </AsideContent>
+    const menuItem = Array.isArray(menu?.value)
+      ? findMenuItemByPath(menu.value, path)
+      : null;
+
+    const { data } = await SettingService.getStaticPage(menuItem?.staticPage || '');
+
+    return (
+     <div className="min-h-screen flex justify-center w-full mt-24 sm:mt-16 py-4">
+      <div className="absolute inset-0 h-[11%] bg-gradient-to-b from-black/25 to-white/5"></div>
+        <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
+            <AsideContent>
+              <RichTextContent content={data.content} />
+            </AsideContent>
+        </div>
       </div>
-  );
+    );
+  } catch  {
+    return (
+      <div className="flex flex-col text-center md:px-12 items-center justify-center h-screen w-full text-gray-700">
+      <div className="absolute inset-0 h-[11%] bg-gradient-to-b from-black/25 to-white/5"></div>
+          <h1 className="text-4xl font-bold">404 - Page Not Found</h1>
+          <p className="mt-2 text-lg">Halaman yang kamu cari tidak ditemukan.</p>
+          <Link href="/" className="mt-4 px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+            Kembali ke Beranda
+          </Link>
+        </div>
+    )
+  }
 }

@@ -10,9 +10,9 @@ const Footer = () => {
     const { data: setting, isLoading: isSettingLoading, isFetching: isSettingFetching, refetch: refetchSetting, isError: isSettingError } = useSetting(`footer-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
     return (
        <>
-        <footer className="bg-black/90 px-6 pb-24 md:pb-6 py-6 w-full">
-            <div className="w-full">
-                <div className="grid grid-cols-4 gap-y-5 items-center justify-start mx-0 lg:mx-16">
+        <footer className="bg-black/90 pb-24 md:pb-6 py-6 w-full flex justify-center">
+            <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl relative flex flex-col align-middle justify-center dark:bg-gray-700 dark:border-gray-600">
+                <div className="grid grid-cols-4 gap-y-5 items-center justify-start">
                     {
                         isSettingLoading || (isSettingFetching && !setting?.value) ? (
                             <>

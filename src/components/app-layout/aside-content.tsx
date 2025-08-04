@@ -10,10 +10,10 @@ import Refetch from "../shared/refetch";
 
 export default function AsideContent({ children }: { children: React.ReactNode}) {
 
-    const { data: articles, isLoading, isFetching, refetch, isError} = useArticle({"page_size": 4});
+    const { data: articles, isLoading, isFetching, refetch, isError} = useArticle({ "page_size": 5 , 'order': 'desc', 'by':'views'});
 
   return (
-    <div className="flex flex-col items-stretch lg:flex-row w-full">
+    <div className="flex gap-x-2 flex-col items-stretch lg:flex-row w-full">
       <main className="flex-1 min-w-0">
         <div className="space-y-6">
           <div className="mb-8">
@@ -52,7 +52,7 @@ export default function AsideContent({ children }: { children: React.ReactNode})
                   articles?.pages[0].data.map((article) => (
                     <Link key={article.id} href={`/article/${article.slug}`}>
                       <li className="flex py-1 border-b border-gray-100 last:border-0 group">
-                        <div className="mr-3 flex-shrink-0 w-24 h-16 sm:w-28 sm:h-20">
+                        <div className="mr-3 flex-shrink-0 w-24 h-16 sm:w-28 sm:h-20 aspect-[3/2]">
                           <Image
                             className="w-full h-full rounded object-cover"
                             src={article.thumbnail || "/placeholder.svg?height=80&width=120"}
@@ -83,12 +83,6 @@ export default function AsideContent({ children }: { children: React.ReactNode})
             <h2 className="text-xl font-bold text-[#850000] mb-4 pb-2 border-gray-300 border-b">Infografis</h2>
             <div className="relative flex justify-center">
               <Infografis slideToShow={1}/>
-            </div>
-          </div>
-          <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
-            <div className="text-xs text-gray-500 mb-2">ADVERTISEMENT</div>
-            <div className="aspect-square bg-gray-200 flex items-center justify-center">
-              <span className="text-gray-400">Ad Space</span>
             </div>
           </div>
         </div>

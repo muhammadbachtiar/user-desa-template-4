@@ -36,13 +36,13 @@ export default function ArticleDetailClient({ slug, initialData }: { slug: strin
   return (
     <AsideContent>
       {showLoading ? (
-        <div className="flex flex-col px-2 md:px-4 my-2 gap-y-1 min-h-screen bg-white animate-pulse">
+        <div className="flex flex-col my-2 gap-y-1 min-h-screen bg-white animate-pulse">
           <span className="self-start align-baseline h-4 w-32 bg-gray-200 rounded"></span>
           <div className="h-10 w-3/4 bg-gray-200 rounded"></div>
           <span className="self-start align-baseline h-4 w-40 bg-gray-200 rounded"></span>
           <span className="self-start align-baseline h-3 w-24 bg-gray-200 rounded"></span>
           <div className="relative w-full group mb-6">
-            <div className="h-52 w-full flex-1 rounded-2xl bg-gray-200"></div>
+            <div className="h-52 w-full flex-1 rounded-2xl"></div>
           </div>
 
           <div className="space-y-2 px-0 md:px-4">
@@ -71,7 +71,7 @@ export default function ArticleDetailClient({ slug, initialData }: { slug: strin
           </div>
         </div>
       ) : (
-        <div className="flex flex-col px-2 md:px-4 my-2 gap-y-1 min-h-screen bg-white">
+        <div className="flex flex-col my-2 gap-y-1 min-h-screen bg-white">
           <span className="self-star w-fit inline-block px-3 py-1 text-sm font-normal text-white bg-[#850000]/90 rounded-full">
             {article?.category?.name}
           </span>
@@ -80,20 +80,20 @@ export default function ArticleDetailClient({ slug, initialData }: { slug: strin
           </h5>
           <span className="self-start align-baseline text-base font-semibold text-black">{article?.user?.name}</span>
           <span className="self-start align-baseline text-sm font-medium text-gray-600">{article?.published_at}</span>
-          <div className="relative w-full group mb-6">
+          <div className="relative w-full group mb-6 aspect-[16/9]">
             {article?.thumbnail && (
               <Image
-                className="w-full max-h-96 rounded-sm shadow-lg object-cover"
                 src={article.thumbnail || "/placeholder.svg"}
                 alt="Article Thumbnail"
-                width={1200}
-                height={720}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 priority
               />
             )}
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out" />
           </div>
-          <RichTextContent content={article?.content || ""} className="px-0 md:px-4" />
+          <RichTextContent content={article?.content || ""} />
           <div className="flex flex-row w-full my-3 px-8 gap-1 justify-items-start justify-end">
             <div className="flex flex-row">
               <p className="text-gray-500 dark:text-gray-400">

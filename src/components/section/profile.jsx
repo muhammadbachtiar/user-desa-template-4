@@ -12,7 +12,7 @@ export default function Profile() {
   const TabListName = [
     {
       name: 'Kata Sambutan',
-      content: <div style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }} className="rounded-2xl border-2 border-[#EDEDED] min-h-[400px] max-h-screen overflow-y-scroll flex flex-col items-center space-y-6">
+      content: <div style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }} className="rounded-2xl border-2 border-[#EDEDED] min-h-[400px] overflow-y-scroll flex flex-col justify-center items-center space-y-6">
                   {isvillageProgramLoading || isvillageProgramFetching && !welcomeMessage ? (
                          <div className="flex animate-pulse col-span-8 w-full">
                             <div className="h-[400px] w-full flex-1 rounded-2xl bg-gray-200"></div>
@@ -37,7 +37,7 @@ export default function Profile() {
     },
     {
       name: 'Program',
-      content: <div style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }} className=" border-2 border-[#EDEDED] rounded-2xl min-h-[400px]  max-h-screen overflow-y-scroll">
+      content: <div style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }} className="rounded-2xl border-2 border-[#EDEDED] min-h-[400px] overflow-y-scroll flex flex-col justify-center items-center space-y-6">
                     {isWellcomeMessageLoading || isvillageProgramFetching && !villageProgram? (
                         <div className="flex animate-pulse col-span-8 w-full">
                             <div className="h-[400px] w-full flex-1 rounded-2xl bg-gray-200"></div>
@@ -63,8 +63,8 @@ export default function Profile() {
   ]
 
   return (
-    <section className="relative w-full max-w-11/12 flex justify-center items-center">
-      <div className="max-w-full w-full flex flex-col align-middle justify-center bg-white dark:bg-gray-700 dark:border-gray-600">
+    <section className="relative w-full flex justify-center items-center">
+      <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl relative flex flex-col align-middle justify-center bg-white dark:bg-gray-700 dark:border-gray-600">
           <TabGroup tabList={TabListName}/>
       </div>
     </section>

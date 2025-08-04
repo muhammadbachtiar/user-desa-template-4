@@ -1,6 +1,5 @@
 'use client'
 
-import { PageProps } from "../../../../.next/types/app/search/[search]/page";
 import { use, useState } from "react";
 import Refetch from "@/components/shared/refetch";
 import useTour from "@/hooks/contents/tour/useList";
@@ -10,7 +9,9 @@ import Link from "next/link";
 import LightboxImage from "@/components/shared/Lightbox";
 import useArticle from "@/hooks/contents/article/useList";
 
-
+interface PageProps {
+    params: Promise<{ search: string }>;
+}
 interface DynamicPageProps {
     params: { search?: string };
   }
@@ -31,9 +32,9 @@ export default function Home({ params }: DynamicPageProps & PageProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-      <>
-         <div className="min-h-screen p-4 md:p-12 w-full mt-16 ">
-            <div className="absolute inset-0 h-[15%] bg-gradient-to-b from-black/25 to-white/5"></div>
+      <div className="min-h-screen flex justify-center w-full">
+        <div className="absolute inset-0 h-[11%] bg-gradient-to-b from-black/25 to-white/5"></div>
+        <div className="mt-16 py-4 md:py-12 w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
             <div className="col-span-6 grid grid-cols-6 gap-x-4 gap-y-8">
                 <div className="relative w-full col-span-6">
                     <input id="search-dropdown" type="search" value={searchValue} onChange={handleChange} className="block py-3 px-5 pe-12 w-full rounded-sm text-sm text-gray-900 bg-gray-100 placeholder:text-black border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Cari judul ..." />
@@ -43,28 +44,28 @@ export default function Home({ params }: DynamicPageProps & PageProps) {
                         </svg>
                     </span>
                 </div>
-                <div className="relative w-full hidden md:block md:col-span-2 lg:col-span-1">
+                <div className="relative w-full hidden md:block md:col-span-1">
                     <div className="px-4 pb-0 sticky top-4 text-gray-900 md:pb-4 dark:text-white">
-                        <ul className="space-y-4" aria-labelledby="mega-menu-dropdown-button">
+                        <ul className="space-y-4 flex items-end flex-col" aria-labelledby="mega-menu-dropdown-button">
                             <li>
-                                <a href="#article" className="text-gray-500 dark:text-gray-400 hover:text-[#850000] dark:hover:text-blue-500">
+                                <a href="#article" className="text-gray-500 dark:text-gray-400 hover:text-[#850000] dark:hover:text-blue-500  w-full">
                                     Artikel
                                 </a>
                             </li>
                             <li>
-                                <a href="#infografis" className="text-gray-500 dark:text-gray-400 hover:text-[#850000] dark:hover:text-blue-500">
+                                <a href="#infografis" className="text-gray-500 dark:text-gray-400 hover:text-[#850000] dark:hover:text-blue-500  w-full">
                                     Infografis
                                 </a>
                             </li>
                             <li>
-                                <a href="#wisata" className="text-gray-500 dark:text-gray-400 hover:text-[#850000] dark:hover:text-blue-500">
+                                <a href="#wisata" className="text-gray-500 dark:text-gray-400 hover:text-[#850000] dark:hover:text-blue-500  w-full">
                                     Wisata
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div className="relative w-full col-span-6 grid grid-cols-6 gap-y-8 md:col-span-4 lg:col-span-5 max-h-[80vh] overflow-y-auto">
+                <div className="relative w-full col-span-6 grid grid-cols-6 gap-y-8 md:col-span-5 max-h-[80vh] overflow-y-auto">
                     <div className="col-span-6">
                         <div className="col-span-6">
                             <span id="article" className="self-center align-baseline text-2xl leading-3 tracking-tighter font-semibold uppercase text-black">Artikel</span>
@@ -72,10 +73,10 @@ export default function Home({ params }: DynamicPageProps & PageProps) {
                         <div className="col-span-6">
                             <hr className="h-px my-3 text-gray-400 bg-gray-200 border-1 dark:bg-gray-700"></hr>
                         </div>
-                         <div className="col-span-6">  
+                            <div className="col-span-6">  
                             <dl className="text-gray-900 divide-y divide-gray-100 dark:text-white dark:divide-gray-700">
                                 { IsArticleLoading || (IsArticleFetching || (!articles || !articles.pages[0] || articles.pages[0]?.data.length === 0)) && isArticleError ? (
-                                     Array.from({ length: 4 }).map((_, index) => (
+                                        Array.from({ length: 4 }).map((_, index) => (
                                         <div
                                         key={index}
                                         className="flex flex-col py-3 animate-pulse bg-gray-50 hover:bg-gray-100"
@@ -120,7 +121,7 @@ export default function Home({ params }: DynamicPageProps & PageProps) {
                         <div className="col-span-6">
                             <hr className="h-px my-3 bg-gray-50 text-gray-400 border-1 dark:bg-gray-700"></hr>
                         </div>
-                         <div className="col-span-6">  
+                            <div className="col-span-6">  
                             {isInfografisLoading || isInfografisFetching && (!infografis || infografis.length === 0) ? (
                                 Array.from({ length: 4 }).map((_, index) => (
                                     <div
@@ -159,7 +160,7 @@ export default function Home({ params }: DynamicPageProps & PageProps) {
                                             </div>
                                         ))
                                     }
-                                   <LightboxImage data={infografis} isOpen={isOpen} currentIndex={currentIndex} setIsOpen={setIsOpen} />
+                                    <LightboxImage data={infografis} isOpen={isOpen} currentIndex={currentIndex} setIsOpen={setIsOpen} />
                                 </>
                             )}
                         </div>
@@ -171,7 +172,7 @@ export default function Home({ params }: DynamicPageProps & PageProps) {
                         <div className="col-span-6">
                             <hr className="h-px my-3 text-gray-400 bg-gray-200 border-1 dark:bg-gray-700"></hr>
                         </div>
-                         <div className="col-span-6">  
+                            <div className="col-span-6">  
                             <dl className="text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
                                 {isTourLoading || isTourFetching && tour?.pages[0]?.data.length === 0 ? (
                                     Array.from({ length: 4 }).map((_, index) => (
@@ -215,6 +216,6 @@ export default function Home({ params }: DynamicPageProps & PageProps) {
                 </div>
             </div>
         </div>
-      </>
+    </div>
   );
 }

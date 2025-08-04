@@ -35,7 +35,7 @@ export type Video = BaseContent & {
 export type Content = Article | Infographic | Video
 
 export function getMetadataValue(meta: ContentMetadata[] | null, key: string): string | string[] | null {
-  if (!Array.isArray(meta) || meta.length === 0) return null;
+   if (!Array.isArray(meta) || meta.length === 0) return null;
   
   const entry = meta.find((item) => item.key === key);
   return entry ? entry.value : null;
@@ -57,8 +57,8 @@ export async function formatMetadata<T extends Content>(
 ): Promise<Metadata> {
   const {
     baseUrl = process.env.NEXT_PUBLIC_DOMAIN_URL,
-    siteName = "Website Desa",
-    defaultAuthor = "Admin Desa"
+    siteName = "PEMKAB Muara Enim",
+    defaultAuthor = "Admin Pemkab Muara Enim",
   } = options || {}
 
   const author = getMetadataValue(content.meta, "author") || defaultAuthor
@@ -68,8 +68,8 @@ export async function formatMetadata<T extends Content>(
   const canonicalUrl = `${baseUrl}/${content.type}s/${content.slug}`
  
   return {
-    title: `${content.title} | ${siteName}`,
-    description: content.description,
+    title: `${content.title || content.meta.find((item) => item.key === "tittle")?.value} | ${siteName}`,
+    description: `${content.description || content.meta.find((item) => item.key === "description")?.value}` || "Informasi terbaru dari Pemerintah Kabupaten Muara Enim",
     authors: [{ name: author as string }],
     keywords: formattedKeywords,
     alternates: {

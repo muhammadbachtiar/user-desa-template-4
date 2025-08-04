@@ -12,8 +12,8 @@ const Tour = () => {
 
   return (
        <>
-        <section className="relative w-full max-w-11/12 flex justify-center items-center overflow-hidden">
-            <div className="col-span-4 w-full grid grid-cols-6 gap-10 justify-items-center rounded-md">
+        <section className="relative w-full flex justify-center items-center ">
+            <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl col-span-4 grid grid-cols-6 gap-10 justify-items-center rounded-md">
                 {
                     isSettingLoading ? (
                     <>
@@ -37,7 +37,7 @@ const Tour = () => {
                       <>
                          <div style={backgroundStyle} className={`relative w-full bg-cover bg-bottom col-span-6 rounded-md`}>
                             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/30 to-black/20 rounded-md"></div>
-                            <div className="relative h-full flex flex-col justify-center items-center p-8 md:px-24 xl:px-56 text-center md:py-16 gap-4">
+                            <div className="relative h-full flex flex-col justify-center items-center p-8 md:px-24 text-center gap-x-4">
                                  <p className="text-lg md:text-xl font-medium text-white mb-4 tracking-wide">
                                     {data?.value?.subTitle ?? "[Sub judul wisata belum diatur]"}
                                 </p>
