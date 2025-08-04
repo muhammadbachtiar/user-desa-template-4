@@ -41,8 +41,8 @@ header {
 }
 
 .prose p {
-  margin-bottom: 1rem;
   color: black;
+  margin-bottom: 0.3rem;
 }
 
 .prose a {

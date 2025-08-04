@@ -19,7 +19,7 @@ const [dateRange, setRangeDate] = useState('');
   };
 
 const { data: setting, isLoading: isSettingLoading, isFetching: isSettingFetching, refetch: refetchSetting, isError: isSettingError } = useSetting(`article-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
-const { data: articles, isLoading, isFetching, hasNextPage, fetchNextPage, refetch, isError } = useArticle({"search": search, "page_size": 6, "date": dateRange}, categoryId);
+const { data: articles, isLoading, isFetching, hasNextPage, fetchNextPage, refetch, isError } = useArticle({"search": search, "page_size": 6, "date": dateRange, 'order': 'desc', 'by':'published_at'}, categoryId);
 const allArticles = articles?.pages.flatMap(page => page?.data) || [];
 
 const backgroundStyle = setting?.value?.imageUrl 
