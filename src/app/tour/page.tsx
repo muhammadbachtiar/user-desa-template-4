@@ -109,7 +109,7 @@ const backgroundStyle = setting?.value?.imageUrl
 
                                                             <div className="mt-2 md:mt-3">
                                                                 <p className="text-sm sm:text-base md:text-lg font-medium text-white/90 max-w-md line-clamp-3">
-                                                                {card?.description ?? "[Alamat tidak tersedia]"}
+                                                                    {card?.description ?? "[Deskripsi tidak tersedia]"}
                                                                 </p>
                                                             </div>
 
