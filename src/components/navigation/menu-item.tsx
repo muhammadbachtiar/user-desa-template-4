@@ -80,7 +80,7 @@ export function MenuItem({ item, basePath = "", level = 0 }: MenuItemProps) {
             <Link href={fullPath}>
               <div 
                 className={`flex whitespace-nowrap overflow-hidden max-w-[9rem]
-                  "inline-flex items-center text-white uppercase px-4 py-2 text-xs font-semibold transition-all duration-200",
+                  "inline-flex items-center text-white uppercase p-2 text-xs font-semibold transition-all duration-200",
                   "focus:outline-none",
                   ${isActive ? "border-b-[1px] border-white text-white" 
                     : "hover:border-b-[2px] hover:border-gray-300"},

@@ -20,7 +20,7 @@ export default function Home({ params }: DynamicPageProps & PageProps) {
     const unwrappedParams = use(params);
     const [searchValue, setSearchValue] = useState(unwrappedParams.search || '');
 
-    const { data: articles, isLoading: IsArticleLoading, isFetching:IsArticleFetching, refetch:refetchArticle, isError:isArticleError} = useArticle({"search": searchValue, "page_size": 6});
+    const { data: articles, isLoading: IsArticleLoading, isFetching:IsArticleFetching, refetch:refetchArticle, isError:isArticleError} = useArticle({"search": searchValue, "page_size": 6, 'order': 'desc', 'by':'published_at'}, 0);
     const { data: tour, isLoading: isTourLoading, isFetching: isTourFetching, refetch: refetchTour, isError: isTourError } = useTour({"search": searchValue});
     const { data: infografis, isLoading: isInfografisLoading, isFetching: isInfografisFetching, refetch: refetchInfografis, isError: isInfografisError } = useInfografis({"search": searchValue});
 

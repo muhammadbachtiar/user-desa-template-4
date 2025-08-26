@@ -27,17 +27,6 @@ export default function Logo() {
           ) : (
               <>       
                 <Link href={"/"} className={`flex flex-row py-1 space-x-3 rtl:space-x-reverse rounded-md lg:hover:scale-95 transition transform duration-300 ease-in-out`}>
-                    {/* <Image
-                        className="h-1 mx-1"
-                        src={logo?.value?.imageUrl ?? '/images/unavailable-image.png'}
-                        alt="Logo"
-                        width={500}
-                        height={300}
-                        style={{
-                          width: "38px",
-                          height: "auto",
-                        }}
-                      /> */}
                       <Image
                       className="w-[40px] mr-1 object-contain aspect-square"
                       src={logo?.value?.imageUrl ?? '/images/unavailable-image.png'}
@@ -46,7 +35,7 @@ export default function Logo() {
                       height={500}
                     />
                     <div className='flex flex-col justify-center items-start'>
-                        <span className={`font-bold text-md leading-5 text-start align-baseline text-md tracking-tighter text-white`}>{ logo?.value?.regionEntity ?? "[Judul logo belum diatur]"} </span>
+                        <span className={`font-bold text-md leading-4 text-start align-baseline text-md tracking-tighter text-white`}>{ logo?.value?.regionEntity ?? "[Judul logo belum diatur]"} </span>
                         <span className={`text-xs font-semibold text-start align-baseline leading-3 text-white`}>{ logo?.value?.regionDescription ?? "[Sub judul logo belum diatur]"} </span>
                     </div>
                 </Link>
@@ -54,6 +43,5 @@ export default function Logo() {
           )
       }
     </>
-    
   );
 }

@@ -21,7 +21,7 @@ interface SliderButtonProps {
 
 const SliderCard = ({useButton = false, useDots= false}: SliderCardProps) => {
   let isInfinite = false
-  const { data: articles, isLoading, isFetching, refetch, isError } = useArticle({"page_size": 6});
+  const { data: articles, isLoading, isFetching, refetch, isError } = useArticle({"page_size": 6, 'order': 'desc', 'by':'published_at'});
   const dataArticles = articles?.pages?.[0]?.data ?? [];
   
   if(!isLoading && !isFetching && !isError){

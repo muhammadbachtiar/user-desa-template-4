@@ -84,12 +84,12 @@ const backgroundStyle = setting?.value?.imageUrl
                                 </div>
                             ) : (
                                 <>
-                                    <div className="col-span-6 grid grid-cols-12 px-3 md:px-0 gap-6 w-full">
+                                    <div className="col-span-6 grid grid-cols-6 px-3 md:px-0 gap-6 w-full">
                                         {allTour.map((card) => 
                                             <div
                                                 tabIndex={1}
                                                 key={card.id}
-                                                className="col-span-12 md:col-span-6 xl:col-span-4 group hover:scale-[1.02] focus:scale-[1.02] transition duration-300 ease-in-out"
+                                                className="col-span-6 md:col-span-3 xl:col-span-2 group hover:scale-[1.02] focus:scale-[1.02] transition duration-300 ease-in-out"
                                                 >
                                                 <Link href={`/tour/${card?.slug ?? ""}`} className="flex flex-col gap-2">
                                                     <div className="relative overflow-hidden rounded-3xl h-[200px] sm:h-[250px] md:h-[300px] w-full flex justify-center items-end">
@@ -102,7 +102,7 @@ const backgroundStyle = setting?.value?.imageUrl
                                                             />
                                                         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
                                                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-                                                        <div className="absolute inset-0 flex flex-col justify-end pl-6 py-6 md:py-8 md:pl-8 w-full md:w-5/6">
+                                                        <div className="absolute inset-0 flex flex-col justify-end p-6 md:py-8 md:pl-8 w-full md:w-5/6">
                                                             <h5 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight group-hover:text-white/70 line-clamp-2  transition-colors">
                                                                 {card.title}
                                                             </h5>
