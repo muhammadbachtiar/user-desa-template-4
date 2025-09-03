@@ -1,6 +1,5 @@
 "use client"
 
-import useArticleDetail from "@/hooks/contents/article/useDetail"
 import RichTextContent from "@/components/shared/RichTextContent"
 import Image from "next/image"
 import AsideContent from "@/components/app-layout/aside-content"
@@ -8,30 +7,20 @@ import Refetch from "@/components/shared/refetch"
 import { ArticleData } from "@/services/controlers/article/type"
 import { useState } from "react"
 
-export default function ArticleDetailClient({ slug, initialData }: { slug: string, initialData: ArticleData }) {
+
+export default function ArticleDetailClient({ initialData }: { initialData: ArticleData }) {
 
   const [shouldFetch, setShouldFetch] = useState(!initialData || Object.keys(initialData).length === 0)  
 
-  const {
-    data: fetchedArticle,
-    isLoading: isLoadingArticle,
-    isFetching: isFetchingArticle,
-    refetch: refetchArticle,
-    isError: isErrorArticle,
-  } = useArticleDetail({ 
-    with: "user,category",
-  }, slug, shouldFetch, initialData );
-
-  const article = shouldFetch ? fetchedArticle : initialData;
+  const article = initialData;
   
   const handleRefresh = () => {
     setShouldFetch(true);
-    refetchArticle();
   };
 
-  const showLoading = isLoadingArticle && shouldFetch || Object.keys(article || {}).length === 0;
-  const showError = isErrorArticle && !isFetchingArticle && shouldFetch;
-  const showNoData = (!showError && !isFetchingArticle && !article);
+  const showLoading =  shouldFetch || Object.keys(article || {}).length === 0;
+  const showError = shouldFetch;
+  const showNoData = (!showError && !article);
 
   return (
     <AsideContent>

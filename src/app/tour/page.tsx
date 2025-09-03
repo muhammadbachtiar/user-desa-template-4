@@ -24,7 +24,8 @@ const backgroundStyle = setting?.value?.imageUrl
       <>
          {
             isSettingLoading ? (
-                <div className="flex animate-pulse mb-4 col-span-8 w-full">
+                <div className="flex animate-pulse mb-4 col-span-8 w-full mt-24 sm:mt-16">
+                     <div className="absolute inset-0 h-[11%] bg-gradient-to-b from-black/25 to-white/5"></div>
                     <div className="h-52 w-full flex-1 rounded-2xl"></div>
                 </div>
             ) : isSettingError && !isSettingFetching  ? (
