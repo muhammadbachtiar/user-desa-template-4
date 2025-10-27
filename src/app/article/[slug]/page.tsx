@@ -55,8 +55,8 @@ export default async function ArticleDetailPage({
 
     return (
       <div className="min-h-screen flex justify-center w-full mt-24 sm:mt-16 py-4">
-        <div className="absolute inset-0 h-[11%] bg-gradient-to-b from-black/25 to-white/5"></div>
-        <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
+        <div className="absolute inset-0 h-[11%] bg-gradient-to-b from-black/25 to-white/5 z-0"></div>
+        <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl z-10">
           <ArticleDetailClient initialData={article} />
         </div>
       </div>
@@ -67,7 +67,7 @@ export default async function ArticleDetailPage({
     }
     return (
       <div className="flex flex-col text-center items-center justify-center mt-24 sm:mt-16  h-96 w-full text-gray-700">
-        <div className="absolute inset-0 h-[11%] bg-gradient-to-b from-black/25 to-white/5"></div>
+        <div className="absolute inset-0 h-[11%] bg-gradient-to-b from-black/25 to-white/5 z-0"></div>
         <h1 className="text-4xl font-bold">404 - Page Not Found</h1>
         <p className="mt-2 text-lg">Halaman yang kamu cari tidak ditemukan.</p>
         <Link

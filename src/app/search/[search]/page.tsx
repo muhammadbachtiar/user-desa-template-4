@@ -33,8 +33,8 @@ export default function Home({ params }: DynamicPageProps & PageProps) {
 
   return (
       <div className="min-h-screen flex justify-center w-full">
-        <div className="absolute inset-0 h-[11%] bg-gradient-to-b from-black/25 to-white/5"></div>
-        <div className="mt-16 py-4 md:py-12 w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
+        <div className="absolute inset-0 h-[11%] bg-gradient-to-b from-black/25 to-white/5 z-0"></div>
+        <div className="mt-16 py-4 md:py-12 w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl z-10">
             <div className="col-span-6 grid grid-cols-6 gap-x-4 gap-y-8">
                 <div className="relative w-full col-span-6">
                     <input id="search-dropdown" type="search" value={searchValue} onChange={handleChange} className="block py-3 px-5 pe-12 w-full rounded-sm text-sm text-gray-900 bg-gray-100 placeholder:text-black border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Cari judul ..." />
