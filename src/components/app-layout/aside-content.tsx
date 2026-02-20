@@ -80,7 +80,6 @@ export default function AsideContent({ children }: { children: React.ReactNode})
             </ul>
           </div>
           <div>
-            <h2 className="text-xl font-bold text-[#850000] mb-4 pb-2 border-gray-300 border-b">Infografis</h2>
             <div className="relative flex justify-center">
               <Infografis slideToShow={1}/>
             </div>

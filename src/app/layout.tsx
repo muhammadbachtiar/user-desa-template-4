@@ -5,6 +5,9 @@ import "./globals.css";
 import Chatbot from "@/components/chatbot/chatbot";
 import ClientWrapper from "@/components/shared/clientWrapper";
 import SettingService from "@/services/controlers/setting/setting.service";
+import Script from "next/script";
+import FloatingWeatherButton from "@/components/weather/FloatingWeatherButton";
+import GoogleAnalytics from "@/components/shared/GoogleAnalytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,6 +52,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ClientWrapper>
+          <GoogleAnalytics />
           <div className="min-h-screen min-w-full bg-primary flex flex-col justify-between items-start w-full">
                 <div className="absolute top-0 left-0 w-full z-50 ">
                   <Header />
@@ -60,8 +64,13 @@ export default function RootLayout({
                 </div>
                 <Footer/>
             </div>
+            <FloatingWeatherButton />
             <Chatbot/>
         </ClientWrapper>
+        <Script
+            src="https://website-widgets.pages.dev/dist/sienna.min.js"
+            strategy="afterInteractive"
+          />
       </body>
     </html>
   );

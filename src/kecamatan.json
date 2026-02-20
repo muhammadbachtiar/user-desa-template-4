@@ -1,0 +1,156 @@
+[
+  {
+    "kecamatan": "Muara Enim",
+    "kelurahan_desa": "Kelurahan Muara Enim",
+    "adm4": "16.03.02.1010",
+    "lat": -3.6548,
+    "lon": 103.7783
+  },
+  {
+    "kecamatan": "Lawang Kidul",
+    "kelurahan_desa": "Kelurahan Tanjung Enim",
+    "adm4": "16.03.07.1001",
+    "lat": -3.7506,
+    "lon": 103.8055
+  },
+  {
+    "kecamatan": "Tanjung Agung",
+    "kelurahan_desa": "Desa Tanjung Agung",
+    "adm4": "16.03.01.2018",
+    "lat": -3.9311,
+    "lon": 103.8156
+  },
+  {
+    "kecamatan": "Panang Enim",
+    "kelurahan_desa": "Desa Lebak Budi",
+    "adm4": "16.03.27.2001",
+    "lat": -4.0167,
+    "lon": 103.7917
+  },
+  {
+    "kecamatan": "Semende Darat Laut",
+    "kelurahan_desa": "Desa Pulau Panggung",
+    "adm4": "16.03.08.2008",
+    "lat": -4.1167,
+    "lon": 103.6167
+  },
+  {
+    "kecamatan": "Semende Darat Tengah",
+    "kelurahan_desa": "Desa Sri Tanjung",
+    "adm4": "16.03.09.2004",
+    "lat": -4.1333,
+    "lon": 103.5833
+  },
+  {
+    "kecamatan": "Semende Darat Ulu",
+    "kelurahan_desa": "Desa Aremantai",
+    "adm4": "16.03.10.2006",
+    "lat": -4.1833,
+    "lon": 103.5333
+  },
+  {
+    "kecamatan": "Gunung Megang",
+    "kelurahan_desa": "Desa Gunung Megang Dalam",
+    "adm4": "16.03.04.2003",
+    "lat": -3.4667,
+    "lon": 103.9500
+  },
+  {
+    "kecamatan": "Belimbing",
+    "kelurahan_desa": "Desa Cinta Kasih",
+    "adm4": "16.03.23.2003",
+    "lat": -3.4500,
+    "lon": 104.0333
+  },
+  {
+    "kecamatan": "Ujan Mas",
+    "kelurahan_desa": "Desa Ujan Mas Baru",
+    "adm4": "16.03.11.2003",
+    "lat": -3.5833,
+    "lon": 103.8833
+  },
+  {
+    "kecamatan": "Benakat",
+    "kelurahan_desa": "Desa Padang Bindu",
+    "adm4": "16.03.19.2001",
+    "lat": -3.4833,
+    "lon": 103.8500
+  },
+  {
+    "kecamatan": "Rambang Niru",
+    "kelurahan_desa": "Desa Tebat Agung",
+    "adm4": "16.03.03.2005",
+    "lat": -3.6167,
+    "lon": 104.1167
+  },
+  {
+    "kecamatan": "Empat Petulai Dangku",
+    "kelurahan_desa": "Desa Dangku",
+    "adm4": "16.03.26.2009",
+    "lat": -3.5333,
+    "lon": 104.1833
+  },
+  {
+    "kecamatan": "Rambang",
+    "kelurahan_desa": "Desa Sugih Waras",
+    "adm4": "16.03.15.2007",
+    "lat": -3.6667,
+    "lon": 104.2833
+  },
+  {
+    "kecamatan": "Lubai",
+    "kelurahan_desa": "Desa Beringin",
+    "adm4": "16.03.14.2006",
+    "lat": -3.8500,
+    "lon": 104.2333
+  },
+  {
+    "kecamatan": "Lubai Ulu",
+    "kelurahan_desa": "Desa Karang Agung",
+    "adm4": "16.03.25.2001",
+    "lat": -3.9833,
+    "lon": 104.2167
+  },
+  {
+    "kecamatan": "Gelumbang",
+    "kelurahan_desa": "Kelurahan Gelumbang",
+    "adm4": "16.03.06.1010",
+    "lat": -3.2333,
+    "lon": 104.5333
+  },
+  {
+    "kecamatan": "Lembak",
+    "kelurahan_desa": "Desa Lembak",
+    "adm4": "16.03.17.2012",
+    "lat": -3.3167,
+    "lon": 104.4500
+  },
+  {
+    "kecamatan": "Sungai Rotan",
+    "kelurahan_desa": "Desa Sukarami",
+    "adm4": "16.03.16.2014",
+    "lat": -3.1500,
+    "lon": 104.3667
+  },
+  {
+    "kecamatan": "Kelekar",
+    "kelurahan_desa": "Desa Menanti",
+    "adm4": "16.03.21.2002",
+    "lat": -3.2833,
+    "lon": 104.5833
+  },
+  {
+    "kecamatan": "Belida Darat",
+    "kelurahan_desa": "Desa Tanjung Bunut",
+    "adm4": "16.03.24.2001",
+    "lat": -3.2667,
+    "lon": 104.6167
+  },
+  {
+    "kecamatan": "Muara Belida",
+    "kelurahan_desa": "Desa Patra Tani",
+    "adm4": "16.03.22.2006",
+    "lat": -3.0833,
+    "lon": 104.6667
+  }
+]

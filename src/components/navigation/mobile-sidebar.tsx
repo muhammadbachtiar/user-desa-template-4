@@ -110,7 +110,7 @@ export function MobileSidebar({ menuData, isOpen, setIsOpen }: MobileSidebarProp
                       <>
                         <DisclosureButton
                           className={classNames(
-                            "flex justify-between items-center w-full py-2 px-3 font-light rounded-md transition-all duration-200",
+                            "flex text-start justify-between items-center w-full py-2 px-3 font-light rounded-md transition-all duration-200",
                             pathname.startsWith(menu.route || "")
                               ? "text-[#850000]"
                               : "text-black hover:bg-gray-50",

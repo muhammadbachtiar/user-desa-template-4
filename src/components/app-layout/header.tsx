@@ -4,11 +4,50 @@ import { MainNav } from "../navigation/main-nav";
 import useSetting from "@/hooks/settings/useSettings";
 import Refetch from "../shared/refetch";
 import SearchForm from "../shared/searchForm";
+import useFeatureFlags from "@/hooks/settings/useFeatureFlags";
+import type { MenuItem } from "@/types/menu";
 
+function filterMenusByFeatures(
+  menus: MenuItem[],
+  features: { tour: boolean; pressRelease: boolean }
+): MenuItem[] {
+  const isRouteMatch = (route: string | undefined, target: string): boolean => {
+    if (!route) return false;
+    const normalized = route.startsWith('/') ? route : `/${route}`;
+    return normalized === target;
+  };
+
+  return menus
+    .map((menu) => {
+      if (menu.child && Array.isArray(menu.child) && menu.child.length > 0) {
+        return { ...menu, child: filterMenusByFeatures(menu.child, features) };
+      }
+      return menu;
+    })
+    .filter((menu) => {
+      if (isRouteMatch(menu.route, "/tour") && !features.tour) return false;
+      if (isRouteMatch(menu.route, "/press-release") && !features.pressRelease) return false;
+      if (menu.child && Array.isArray(menu.child) && menu.child.length === 0 && !menu.route) return false;
+      return true;
+    });
+}
 
 export default function Header() {
 
   const { data: menu, isLoading, refetch, isFetching, isError } = useSetting(`menu-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
+  const { isSectionEnabled, pressRelease } = useFeatureFlags();
+
+  const defaultMenu: MenuItem[] = [
+    { order: 1, title: "Home", route: "/", staticPage: null, child: null },
+    { order: 2, title: "Artikel", route: "/article", staticPage: null, child: null },
+    { order: 3, title: "Wisata", route: "/tour", staticPage: null, child: null },
+  ];
+
+  const rawMenuData: MenuItem[] = (menu?.value?.length > 0) ? menu.value : defaultMenu;
+  const filteredMenuData = filterMenusByFeatures(rawMenuData, {
+    tour: isSectionEnabled("tour"),
+    pressRelease: pressRelease,
+  });
 
   return (
      <header className="bg-transparent backdrop-blur-sm lg:backdrop-blur-none border-t-8 sm:border-t-4 border-t-[#850000] flex justify-center"> 
@@ -33,31 +72,7 @@ export default function Header() {
                     ) : isError && !isFetching  ? (
                         <Refetch refetch={refetch} />
                     ) : (
-                        <MainNav menuData={(menu?.value?.length > 0) ? menu.value
-                            :  [
-                                {
-                                    "order": 1,
-                                    "title": "Home",
-                                    "route": "/",
-                                    "staticPage": null,
-                                    "child": null
-                                },
-                                {
-                                    "order": 2,
-                                    "title": "Artikel",
-                                    "route": "/article",
-                                    "staticPage": null,
-                                    "child": null
-                                },
-                                {
-                                    "order": 3,
-                                    "title": "Wisata",
-                                    "route": "/tour",
-                                    "staticPage": null,
-                                    "child": null
-                                }
-                            ]}  
-                        />
+                        <MainNav menuData={filteredMenuData} />
                     )
                 }
             </div>
@@ -68,3 +83,4 @@ export default function Header() {
     </header>
   );
 }
+
