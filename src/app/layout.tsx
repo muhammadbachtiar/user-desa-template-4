@@ -40,19 +40,29 @@ export async function generateMetadata() {
   }
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
+   let gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || "";
+    try {
+      const villageId = process.env.NEXT_PUBLIC_VILLAGE_ID;
+      const response = await SettingService.getSetting(`google-analytics-id-${villageId}`);
+      if (response?.data?.value?.id) {
+        gaId = response.data.value.id;
+      }
+    } catch (error) {
+      console.error("Failed to fetch GA ID on server:", error);
+    }
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ClientWrapper>
-          <GoogleAnalytics />
+          <GoogleAnalytics  gaId={gaId} />
           <div className="min-h-screen min-w-full bg-primary flex flex-col justify-between items-start w-full">
                 <div className="absolute top-0 left-0 w-full z-50 ">
                   <Header />
