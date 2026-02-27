@@ -77,8 +77,8 @@ export default async function RootLayout({
             <FloatingWeatherButton />
             <Chatbot/>
         </ClientWrapper>
-        <Script
-            src="https://website-widgets.pages.dev/dist/sienna.min.js"
+         <Script
+            src="https://cdn.jsdelivr.net/npm/sienna-accessibility@latest/dist/sienna-accessibility.umd.js"
             strategy="afterInteractive"
           />
       </body>
