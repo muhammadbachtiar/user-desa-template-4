@@ -5,6 +5,7 @@ import Logo from "../shared/logo";
 import sosmedIcons from "../shared/sosmedIcons";
 import useSetting from "@/hooks/settings/useSettings";
 import Refetch from "../shared/refetch";
+import { GoogleMapsEmbed } from "../shared/GoogleMapsEmbed";
 
 const Footer = () => {
     const { data: setting, isLoading: isSettingLoading, isFetching: isSettingFetching, refetch: refetchSetting, isError: isSettingError } = useSetting(`footer-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
@@ -13,7 +14,6 @@ const Footer = () => {
     const lat = setting?.value?.contactUs?.latitude || setting?.value?.latitude;
     const lng = setting?.value?.contactUs?.longitude || setting?.value?.longitude;
     const hasCoordinates = lat && lng;
-    const gmapsApiKey = process.env.NEXT_PUBLIC_GMAPS_API_KEY;
 
     return (
        <>
@@ -49,18 +49,15 @@ const Footer = () => {
                                 {/* Kolom 1: Logo & Map */}
                                 <div className="col-span-1 md:col-span-2 lg:col-span-1 flex flex-col gap-4">
                                     <Logo/>
-                                    {hasCoordinates && gmapsApiKey && (
-                                        <div className="w-full h-48 rounded-lg overflow-hidden border border-gray-700 shadow-lg">
-                                            <iframe
-                                                width="100%"
-                                                height="100%"
-                                                style={{ border: 0 }}
-                                                src={`https://www.google.com/maps/embed/v1/place?key=${gmapsApiKey}&q=${lat},${lng}&zoom=15`}
-                                                allowFullScreen
-                                                loading="lazy"
-                                                referrerPolicy="no-referrer-when-downgrade"
+                                    {hasCoordinates && (
+                                        <div className="relative w-full h-48 rounded-lg overflow-hidden border border-gray-700 shadow-lg">
+                                            <GoogleMapsEmbed
+                                                latitude={lat}
+                                                longitude={lng}
+                                                mode="place"
                                                 title="Lokasi Kantor Desa"
-                                            ></iframe>
+                                                className="absolute inset-0 w-full h-full"
+                                            />
                                         </div>
                                     )}
                                 </div>

@@ -65,7 +65,7 @@ function DesktopServiceCard({ item, onClick, index = 0 }: { item: ServiceItem; o
       </span>
 
       {/* Description */}
-      <span className="text-[11px] text-gray-500 dark:text-gray-400 text-center line-clamp-2 leading-snug max-w-[150px]">
+      <span className="text-[11px] text-gray-500 dark:text-gray-400 text-center line-clamp-3 leading-snug max-w-[150px]">
         {item.description || `Informasi tentang ${item.title}`}
       </span>
     </div>
@@ -196,7 +196,7 @@ function filterServicesByFeatures(
     // Normalized check: ensure it starts with / for local routes comparison
     // If the link is full url, it won't match anyway which is correct
     const normalized = link.startsWith('/') ? link : `/${link}`;
-    return normalized === target || link === target; 
+    return normalized === target || link === target;
   };
 
   return services.filter((service) => {
@@ -266,27 +266,27 @@ export default function App() {
             style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             className="flex mx-4 sm:mx-10 md:hidden overflow-x-auto py-1.5 bg-[#850000] rounded-full fixed bottom-4 items-center"
           >
-             <div className="flex flex-row items-center justify-center min-w-full w-fit px-2 gap-1">
-                {showSkeleton ? (
+            <div className="flex flex-row items-center justify-center min-w-full w-fit px-2 gap-1">
+              {showSkeleton ? (
                 <div className="flex justify-center w-full animate-pulse space-x-2 py-1">
-                    {Array.from({ length: 4 }).map((_, i) => (
+                  {Array.from({ length: 4 }).map((_, i) => (
                     <div key={i} className="w-14 h-12 bg-white/20 rounded-md"></div>
-                    ))}
+                  ))}
                 </div>
-                ) : showError ? (
+              ) : showError ? (
                 <Refetch refetch={refetch} />
-                ) : showEmpty ? (
+              ) : showEmpty ? (
                 <p className="text-white/80 text-center text-xs w-full py-2">Layanan tidak tersedia</p>
-                ) : (
+              ) : (
                 services.map((item, i) => (
-                    <MobileBarItem
+                  <MobileBarItem
                     key={item.id ?? item.title}
                     item={item}
                     onClick={handleOpenModal}
                     isLast={i === services.length - 1}
-                    />
+                  />
                 ))
-                )}
+              )}
             </div>
           </div>
 

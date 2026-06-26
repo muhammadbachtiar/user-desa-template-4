@@ -7,6 +7,7 @@ export type BaseContent = {
   publishedAt?: string
   updatedAt?: string
   coverImage?: string
+  thumbnail?: string | null;
 }
 
 export type ContentMetadata = {
@@ -35,8 +36,8 @@ export type Video = BaseContent & {
 export type Content = Article | Infographic | Video
 
 export function getMetadataValue(meta: ContentMetadata[] | null, key: string): string | string[] | null {
-   if (!Array.isArray(meta) || meta.length === 0) return null;
-  
+  if (!Array.isArray(meta) || meta.length === 0) return null;
+
   const entry = meta.find((item) => item.key === key);
   return entry ? entry.value : null;
 }
@@ -51,6 +52,7 @@ export async function formatMetadata<T extends Content>(
   options?: {
     baseUrl?: string
     siteName?: string
+    defaultImage?: string
     defaultAuthor?: string
     parent?: ResolvingMetadata
   },
@@ -61,19 +63,47 @@ export async function formatMetadata<T extends Content>(
     defaultAuthor = "Admin Pemkab Muara Enim",
   } = options || {}
 
-  const author = getMetadataValue(content.meta, "author") || defaultAuthor
+  const authorRaw = getMetadataValue(content.meta, "author")
+  const author = typeof authorRaw === "string"
+    ? authorRaw
+    : Array.isArray(authorRaw)
+      ? authorRaw.join(", ")
+      : defaultAuthor
   const keywords = getMetadataValue(content.meta, "keywords")
   const formattedKeywords = formatKeywords(keywords)
 
   const canonicalUrl = `${baseUrl}/${content.type}s/${content.slug}`
- 
+
   return {
-    title: `${content.title || content.meta.find((item) => item.key === "tittle")?.value} | ${siteName}`,
-    description: `${content.description || content.meta.find((item) => item.key === "description")?.value}` || "Informasi terbaru dari Pemerintah Kabupaten Muara Enim",
+    title: `${content.title || content.meta?.find((item) => item.key === "tittle")?.value || "Menu"} | ${siteName}`,
+    description: `${content.description || content.meta?.find((item) => item.key === "description")?.value}` || "",
     authors: [{ name: author as string }],
     keywords: formattedKeywords,
     alternates: {
       canonical: canonicalUrl,
-    }
+    },
+    openGraph: {
+      title: `${content.title || content.meta?.find((item) => item.key === "tittle")?.value || "Menu"} | ${siteName}` || "",
+      description: content.description,
+      url: canonicalUrl,
+      siteName,
+      images: [
+        {
+          url: content.thumbnail || options?.defaultImage || `${baseUrl}/default-og-image.jpg`,
+          width: 1200,
+          height: 630,
+          alt: content.title,
+        },
+      ],
+      type: content.type === "article" ? "article" : "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: content.title,
+      description: content.description,
+      images: [content.coverImage || (getMetadataValue(content.meta, "twitter:image") as string) || `${baseUrl}/default-twitter-image.jpg`],
+      creator: author,
+    },
+
   }
 }

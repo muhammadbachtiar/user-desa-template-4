@@ -10,10 +10,10 @@ import sosmedIcons from "@/components/shared/sosmedIcons";
 import StreetViewChecker from "@/services/utils/checkStreetView";
 import Link from "next/link";
 import { validateAndRedirect } from "@/services/utils/shouldRedirect";
+import { GoogleMapsEmbed } from "@/components/shared/GoogleMapsEmbed";
 
 const TourDetail = () => {
   const { slug } = useParams();
-  const gmapsApiKey = process.env.NEXT_PUBLIC_GMAPS_API_KEY;
   const { data: tour, isLoading } = useTourDetail({}, String(slug));
   const isStreetAvailable = StreetViewChecker({
     lat: Number(tour?.latitude),
@@ -65,10 +65,6 @@ const TourDetail = () => {
     );
   }
   if (tour) {
-    let mapsUrl = `https://www.google.com/maps/embed/v1/place?key=${gmapsApiKey}&q=${tour?.latitude},${tour?.longitude}`;
-    if (isStreetAvailable) {
-      mapsUrl = `https://www.google.com/maps/embed/v1/streetview?key=${gmapsApiKey}&location=${tour?.latitude},${tour?.longitude}&heading=0&pitch=0`;
-    }
     return (
       <>
         <div className="min-h-screen flex justify-center w-full mt-24 sm:mt-16 py-4">
@@ -79,25 +75,13 @@ const TourDetail = () => {
               <div className="lg:col-span-6 lg:sticky top-0 lg:h-screen order-2 lg:order-1">
                 <div className="h-full w-full flex items-start justify-center">
                   <div className="relative w-full h-full min-h-[250px] sm:min-h-[300px] lg:min-h-[500px] rounded-xl overflow-hidden">
-                    {!tour?.latitude && !tour?.longitude && !gmapsApiKey ? (
-                      <div className="w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-800">
-                        <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base">
-                          Map location not available
-                        </p>
-                      </div>
-                    ) : (
-                      <iframe
-                        src={mapsUrl}
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0 }}
-                        allowFullScreen
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        title={`Map of ${tour?.title}`}
-                        className="absolute inset-0"
-                      />
-                    )}
+                    <GoogleMapsEmbed
+                      latitude={tour?.latitude}
+                      longitude={tour?.longitude}
+                      mode={isStreetAvailable ? "streetview" : "place"}
+                      title={`Map of ${tour?.title}`}
+                      className="absolute inset-0"
+                    />
                   </div>
                 </div>
               </div>
