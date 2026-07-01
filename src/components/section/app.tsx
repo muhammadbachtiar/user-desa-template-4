@@ -264,9 +264,9 @@ export default function App() {
           {/* ─── Mobile Bottom Bar ─── */}
           <div
             style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            className="flex mx-4 sm:mx-10 md:hidden overflow-x-auto py-1.5 bg-[#850000] rounded-full fixed bottom-4 items-center"
+            className="flex fixed bottom-4 left-4 right-4 sm:left-10 sm:right-10 md:hidden overflow-x-auto py-1.5 bg-[#850000] rounded-full items-center z-20 shadow-lg"
           >
-            <div className="flex flex-row items-center justify-center min-w-full w-fit px-2 gap-1">
+            <div className="flex flex-row items-center justify-start xs:justify-center min-w-full w-fit px-6 gap-2">
               {showSkeleton ? (
                 <div className="flex justify-center w-full animate-pulse space-x-2 py-1">
                   {Array.from({ length: 4 }).map((_, i) => (
